@@ -1,5 +1,5 @@
 name: khaledandaisha
-description: A professional task manager built with Flutter.
+description: A romantic story game about Khaled and Aisha.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -13,3 +13,5 @@ dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/

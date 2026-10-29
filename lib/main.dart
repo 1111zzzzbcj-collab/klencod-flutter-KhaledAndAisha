@@ -1,28 +1,247 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const KhaledAishaGame());
+  runApp(const KhaledAndAishaApp());
 }
 
-class KhaledAishaGame extends StatelessWidget {
-  const KhaledAishaGame({super.key});
+class KhaledAndAishaApp extends StatelessWidget {
+  const KhaledAndAishaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'KhaledAndAisha',
+      title: 'خالد وعائشة',
       theme: ThemeData(
         useMaterial3: true,
-        fontFamily: 'Roboto',
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFE85D75),
-        ),
+        fontFamily: 'Arial',
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: const Color(0xFF100D17),
       ),
       home: const GameScreen(),
     );
   }
 }
+
+class StoryChoice {
+  final String text;
+  final int nextScene;
+  final int hearts;
+
+  const StoryChoice({
+    required this.text,
+    required this.nextScene,
+    this.hearts = 1,
+  });
+}
+
+class StoryScene {
+  final String image;
+  final String location;
+  final String character;
+  final String dialogue;
+  final List<StoryChoice> choices;
+
+  const StoryScene({
+    required this.image,
+    required this.location,
+    required this.character,
+    required this.dialogue,
+    required this.choices,
+  });
+}
+
+const List<StoryScene> story = [
+  StoryScene(
+    image: 'assets/2c6f571857_51ed988.jpg',
+    location: 'غرفة المعيشة',
+    character: 'خالد',
+    dialogue:
+        'كانت ليلة هادئة، عاد خالد إلى البيت بعد يوم طويل. كان أول شيء يفكر فيه هو عائشة، زوجته وحبيبته.',
+    choices: [
+      StoryChoice(
+        text: 'أذهب للبحث عن عائشة ❤️',
+        nextScene: 1,
+        hearts: 2,
+      ),
+      StoryChoice(
+        text: 'أجلس قليلًا على الأريكة',
+        nextScene: 2,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/92ee2c1520_1da435a.jpg',
+    location: 'داخل المنزل',
+    character: 'عائشة',
+    dialogue:
+        'كانت عائشة تنتظر خالد. وما إن رأته حتى ابتسمت وقالت: تأخرت عليّ اليوم يا حبيبي، اشتقت لك كثيرًا.',
+    choices: [
+      StoryChoice(
+        text: 'أقترب منها وأحتضنها بحنان 🫂',
+        nextScene: 3,
+        hearts: 3,
+      ),
+      StoryChoice(
+        text: 'أقول لها: وحشتيني يا عيشتي ❤️',
+        nextScene: 4,
+        hearts: 2,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/f6cea6d49f7_7a11237.jpg',
+    location: 'الأريكة',
+    character: 'خالد',
+    dialogue:
+        'جلس خالد على الأريكة قليلًا، ثم تذكر أن عائشة ربما تنتظره. ابتسم ونهض ليذهب إليها.',
+    choices: [
+      StoryChoice(
+        text: 'أذهب إلى عائشة',
+        nextScene: 1,
+        hearts: 1,
+      ),
+      StoryChoice(
+        text: 'أرسل لها رسالة حب',
+        nextScene: 4,
+        hearts: 2,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/1793242875662.jpg',
+    location: 'لحظة حب',
+    character: 'خالد وعائشة',
+    dialogue:
+        'ضمّ خالد عائشة إلى صدره وقال: مهما كان يومي متعبًا، يكفيني أن أعود إليكِ. ابتسمت عائشة وشعرت بالأمان بين ذراعيه.',
+    choices: [
+      StoryChoice(
+        text: 'أقبّل جبينها بحنان 😘',
+        nextScene: 5,
+        hearts: 3,
+      ),
+      StoryChoice(
+        text: 'نجلس معًا ونتحدث عن يومنا',
+        nextScene: 6,
+        hearts: 2,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/92ee2c1520_1da435a.jpg',
+    location: 'حديث بين الزوجين',
+    character: 'عائشة',
+    dialogue:
+        'قالت عائشة بخجل: خالد، تعرف إيش أكثر شيء أحبه فيك؟ أحب أنك تجعلني أشعر أنني أغلى إنسانة في حياتك.',
+    choices: [
+      StoryChoice(
+        text: 'أقول لها: أنتِ أغلى ما أملك',
+        nextScene: 3,
+        hearts: 3,
+      ),
+      StoryChoice(
+        text: 'أسألها: إيش أكثر شيء يسعدك؟',
+        nextScene: 6,
+        hearts: 2,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/1793243603804.jpg',
+    location: 'وقت الراحة',
+    character: 'خالد وعائشة',
+    dialogue:
+        'جلس الزوجان متعانقين، يتبادلان الكلمات الجميلة والابتسامات. لم يحتاجا إلى شيء كبير؛ كان قرب كل واحد منهما من الآخر كافيًا.',
+    choices: [
+      StoryChoice(
+        text: 'نقضي وقتًا رومانسيًا معًا ❤️',
+        nextScene: 7,
+        hearts: 3,
+      ),
+      StoryChoice(
+        text: 'أحكي لها قصة من طفولتي',
+        nextScene: 6,
+        hearts: 1,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/1793242967066.jpg',
+    location: 'غرفة النوم',
+    character: 'عائشة',
+    dialogue:
+        'في نهاية اليوم، استعدت عائشة للراحة. نظرت إلى خالد وقالت: أتمنى أن تبقى أيامنا مليئة بالمحبة، مهما تغيرت الحياة.',
+    choices: [
+      StoryChoice(
+        text: 'أطمئنها وأمسك يدها',
+        nextScene: 7,
+        hearts: 2,
+      ),
+      StoryChoice(
+        text: 'أخبرها عن حلمنا للمستقبل',
+        nextScene: 8,
+        hearts: 2,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/35eedfaf892_3f3592.jpg',
+    location: 'ليلة رومانسية',
+    character: 'خالد وعائشة',
+    dialogue:
+        'تحت أجواء الغرفة الهادئة والورود، اقترب الزوجان من بعضهما وتبادلا قبلة حنونة. كانت ليلتهما خاصة بهما، مليئة بالحب والطمأنينة.',
+    choices: [
+      StoryChoice(
+        text: 'نواصل ليلتنا في أجواء هادئة 🌹',
+        nextScene: 9,
+        hearts: 3,
+      ),
+      StoryChoice(
+        text: 'أقول لها: أحبك يا عيشتي',
+        nextScene: 8,
+        hearts: 2,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/1793243411588.jpg',
+    location: 'أحلام المستقبل',
+    character: 'خالد',
+    dialogue:
+        'نظر خالد إلى عائشة وقال: أتمنى أن نبني بيتًا مليئًا بالسعادة، ونحقق أحلامنا معًا، وأبقى دائمًا الشخص الذي تجدين عنده راحتك.',
+    choices: [
+      StoryChoice(
+        text: 'أبدأ فصلًا جديدًا من قصتنا',
+        nextScene: 0,
+        hearts: 2,
+      ),
+      StoryChoice(
+        text: 'أعود إلى عائشة وأحتضنها',
+        nextScene: 3,
+        hearts: 2,
+      ),
+    ],
+  ),
+  StoryScene(
+    image: 'assets/1793243914394.jpg',
+    location: 'نهاية اليوم',
+    character: 'خالد وعائشة',
+    dialogue:
+        'انتهى اليوم وهما بجانب بعضهما. تبادلا كلمات الحب، ثم استعدا للنوم والراحة. كانت هذه ليلة أخرى في حكاية حب لم تنتهِ بعد.',
+    choices: [
+      StoryChoice(
+        text: 'ابدأ يومًا جديدًا مع عائشة ❤️',
+        nextScene: 0,
+        hearts: 3,
+      ),
+      StoryChoice(
+        text: 'أعود إلى لحظة العناق',
+        nextScene: 3,
+        hearts: 2,
+      ),
+    ],
+  ),
+];
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -32,289 +251,389 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  String location = 'غرفة الجلوس';
-  int hearts = 3;
-  int scene = 0;
+  int currentScene = 0;
+  int hearts = 0;
+  int chapter = 1;
 
-  String dialogue =
-      'عائشة جالسة على الأريكة عندما يدخل خالد إلى الغرفة.';
-
-  String speaker = 'الراوي';
-
-  final List<Map<String, dynamic>> choices = [
-    {
-      'text': '❤️ أقترب من عائشة وأجلس بجانبها',
-      'speaker': 'خالد',
-      'dialogue': 'عائشة، اشتقت لك اليوم كثيرًا. كيف كان يومك؟',
-      'response': 'عائشة تبتسم: يومي صار أحلى بعدما جيت.',
-      'hearts': 1,
-    },
-    {
-      'text': '😊 أمزح معها وأضحكها',
-      'speaker': 'خالد',
-      'dialogue': 'عندي سؤال مهم جدًا، ومستعد أسمع إجابتك!',
-      'response': 'عائشة تضحك: خير، إيش السؤال الخطير هذا؟',
-      'hearts': 1,
-    },
-    {
-      'text': '☕ أسألها إذا تريد شيئًا تشربه',
-      'speaker': 'خالد',
-      'dialogue': 'حبيبتي، أجيب لك شايًا أم عصيرًا؟',
-      'response': 'عائشة تقول: اجلس معي أولًا، وبعدها نشرب سوا.',
-      'hearts': 0,
-    },
-  ];
-
-  void choose(int index) {
-    final choice = choices[index];
-
+  void choose(StoryChoice choice) {
     setState(() {
-      speaker = choice['speaker'] as String;
-      dialogue = choice['dialogue'] as String;
-      hearts += choice['hearts'] as int;
-      scene++;
-    });
-
-    Future.delayed(const Duration(milliseconds: 1800), () {
-      if (!mounted) return;
-
-      setState(() {
-        speaker = 'عائشة';
-        dialogue = choice['response'] as String;
-      });
+      hearts += choice.hearts;
+      currentScene = choice.nextScene;
+      chapter++;
     });
   }
 
-  void nextScene() {
+  void restartGame() {
     setState(() {
-      location = location == 'غرفة الجلوس'
-          ? 'المطبخ'
-          : location == 'المطبخ'
-              ? 'الشرفة'
-              : 'غرفة الجلوس';
-
-      speaker = 'الراوي';
-      dialogue = location == 'المطبخ'
-          ? 'ذهب خالد وعائشة إلى المطبخ لتحضير مشروب معًا.'
-          : location == 'الشرفة'
-              ? 'جلس الزوجان في الشرفة يتحدثان عن أحلامهما.'
-              : 'عاد خالد وعائشة إلى غرفة الجلوس لقضاء وقت معًا.';
-
-      scene++;
+      currentScene = 0;
+      hearts = 0;
+      chapter = 1;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFFE4EC),
-              Color(0xFFFFF7F0),
-              Color(0xFFE9E8FF),
-            ],
+    final scene = story[currentScene];
+
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF25182E),
+                Color(0xFF100D17),
+                Color(0xFF09080D),
+              ],
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'KhaledAndAisha ❤️',
-                      style: TextStyle(
-                        fontSize: 21,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF9D3458),
-                      ),
-                    ),
-                    Text(
-                      '❤️ $hearts',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.home_rounded,
-                        color: Color(0xFFE85D75)),
-                    const SizedBox(width: 8),
-                    Text(
-                      location,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text('🏠', style: TextStyle(fontSize: 75)),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+          child: SafeArea(
+            child: Column(
+              children: [
+                _buildHeader(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(22),
+                      child: Stack(
+                        fit: StackFit.expand,
                         children: [
-                          _character('👨🏻', 'خالد'),
-                          const SizedBox(width: 35),
-                          _character('👩🏻', 'عائشة'),
-                        ],
-                      ),
-                      const SizedBox(height: 18),
-                      const Text(
-                        'حياة زوجية مليئة بالمحبة',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF9D3458),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(16),
-                padding: const EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(22),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.pink.withOpacity(0.12),
-                      blurRadius: 15,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      speaker,
-                      textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        color: Color(0xFFE85D75),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      dialogue,
-                      textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        height: 1.7,
-                        color: Color(0xFF34303A),
-                      ),
-                    ),
-                    const SizedBox(height: 14),
-                    if (speaker == 'الراوي') ...[
-                      ...List.generate(
-                        choices.length,
-                        (index) => Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: FilledButton(
-                            onPressed: () => choose(index),
-                            style: FilledButton.styleFrom(
-                              backgroundColor:
-                                  const Color(0xFFE85D75),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 13,
+                          Image.asset(
+                            scene.image,
+                            fit: BoxFit.cover,
+                            alignment: Alignment.center,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                color: const Color(0xFF302338),
+                                alignment: Alignment.center,
+                                child: const Icon(
+                                  Icons.favorite,
+                                  size: 90,
+                                  color: Color(0xFFE7A3C0),
+                                ),
+                              );
+                            },
+                          ),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.black.withValues(alpha: 0.05),
+                                  Colors.black.withValues(alpha: 0.10),
+                                  Colors.black.withValues(alpha: 0.80),
+                                ],
+                                stops: const [0.0, 0.42, 1.0],
                               ),
                             ),
-                            child: Text(
-                              choices[index]['text'] as String,
-                              textAlign: TextAlign.center,
+                          ),
+                          Positioned(
+                            top: 14,
+                            right: 14,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 14,
+                                vertical: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withValues(alpha: 0.55),
+                                borderRadius: BorderRadius.circular(30),
+                                border: Border.all(
+                                  color: Colors.white24,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.location_on_outlined,
+                                    size: 17,
+                                    color: Color(0xFFF0B7CE),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    scene.location,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ] else
-                      FilledButton.icon(
-                        onPressed: nextScene,
-                        icon: const Icon(Icons.arrow_back_rounded),
-                        label: const Text('متابعة القصة'),
-                        style: FilledButton.styleFrom(
-                          backgroundColor: const Color(0xFFE85D75),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                        ),
-                      ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'المشهد $scene',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.black45,
-                        fontSize: 12,
+                          Positioned(
+                            left: 14,
+                            top: 14,
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withValues(alpha: 0.55),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.favorite,
+                                color: Color(0xFFFF8FB5),
+                                size: 21,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 18,
+                            left: 18,
+                            bottom: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  scene.character,
+                                  style: const TextStyle(
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    shadows: [
+                                      Shadow(
+                                        blurRadius: 10,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Container(
+                                  width: 45,
+                                  height: 3,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFE7A3C0),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                _buildStoryPanel(scene),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _character(String emoji, String name) {
-    return Column(
-      children: [
-        Container(
-          width: 105,
-          height: 105,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: const Color(0xFFE85D75),
-              width: 3,
+  Widget _buildHeader() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(18, 12, 18, 8),
+      child: Row(
+        children: [
+          Container(
+            width: 43,
+            height: 43,
+            decoration: BoxDecoration(
+              color: const Color(0xFF44263D),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: const Color(0xFFBD789D),
+              ),
+            ),
+            child: const Icon(
+              Icons.favorite,
+              color: Color(0xFFFFA4C6),
+              size: 23,
             ),
           ),
-          child: Center(
+          const SizedBox(width: 11),
+          const Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'خالد وعائشة',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.3,
+                  ),
+                ),
+                SizedBox(height: 2),
+                Text(
+                  'حكاية حب لا تنتهي',
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Color(0xFFC8B3C8),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 11,
+              vertical: 9,
+            ),
+            decoration: BoxDecoration(
+              color: const Color(0xFF332132),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.favorite,
+                  size: 17,
+                  color: Color(0xFFFF83AC),
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  '$hearts',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 7),
+          IconButton(
+            tooltip: 'إعادة القصة',
+            onPressed: restartGame,
+            icon: const Icon(Icons.restart_alt),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStoryPanel(StoryScene scene) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(18, 15, 18, 15),
+      decoration: const BoxDecoration(
+        color: Color(0xFF19131F),
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25),
+        ),
+        border: Border(
+          top: BorderSide(
+            color: Color(0xFF56364F),
+            width: 1,
+          ),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.auto_stories,
+                size: 16,
+                color: Color(0xFFE7A3C0),
+              ),
+              const SizedBox(width: 7),
+              Text(
+                'الفصل $chapter',
+                style: const TextStyle(
+                  color: Color(0xFFE7A3C0),
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Spacer(),
+              const Text(
+                'اختَر مسار قصتك',
+                style: TextStyle(
+                  color: Color(0xFFA99AAD),
+                  fontSize: 11,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 11),
+          Text(
+            scene.dialogue,
+            textAlign: TextAlign.right,
+            style: const TextStyle(
+              fontSize: 14,
+              height: 1.8,
+              color: Color(0xFFF4EDF4),
+            ),
+          ),
+          const SizedBox(height: 14),
+          ...scene.choices.map(
+            (choice) => Padding(
+              padding: const EdgeInsets.only(bottom: 9),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(15),
+                  onTap: () => choose(choice),
+                  child: Ink(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 14,
+                    ),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color(0xFF57334F),
+                          Color(0xFF352237),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                        color: const Color(0xFF82536F),
+                        width: 0.8,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            choice.text,
+                            textAlign: TextAlign.right,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        const Icon(
+                          Icons.arrow_back_ios_new,
+                          size: 15,
+                          color: Color(0xFFFFB6D1),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 2),
+          Center(
             child: Text(
-              emoji,
-              style: const TextStyle(fontSize: 55),
+              'كل اختيار يصنع ذكرى جديدة ❤️',
+              style: TextStyle(
+                fontSize: 10,
+                color: Colors.white.withValues(alpha: 0.48),
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          name,
-          style: const TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF9D3458),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
